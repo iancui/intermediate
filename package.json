@@ -1,6 +1,11 @@
 {
   "name": "intermediate",
+  "version": "0.0.1",
   "private": true,
+  "engines": {
+    "node": "0.10.33",
+    "npm":  "1.4.23"
+  },
   "scripts": {
     "start": "meteor run"
   },
