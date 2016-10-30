@@ -22,23 +22,38 @@ Recipes.allow({
 Ingredient = new SimpleSchema({
   name: {
     type: String,
+    label: '材料名字',
   },
   amount: {
     type: String,
+    label: '数量',
   }
 });
 
 RecipeSchema = new SimpleSchema({
   name: {
     type: String,
-    label: "Name"
+    label: '名称'
   },
   desc: {
     type: String,
-    label: "Description"
+    optional: true,
+    label: '描述',
   },
   ingredients: {
     type: [Ingredient],
+    label: '材料'
+  },
+  cookStep: {
+    type: String,
+    optional: true,
+    label: '制作步骤',
+    autoform: {
+     afFieldInput: {
+        type: "textarea",
+        rows: 10,
+      },
+    },
   },
   inMenu: {
     type: Boolean,
@@ -75,6 +90,9 @@ Meteor.methods({
     Recipes.update(id, {
       $set: {inMenu: !currentState},
     });
+  },
+  deleteRecipe: function (id) {
+    Recipes.remove(id);
   },
 });
 

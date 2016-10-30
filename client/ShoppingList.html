@@ -1,3 +1,12 @@
 <template name="ShoppingList">
-  <h1 class="page-title">MY SHOPPING LIST</h1>
+  <h1 class="page-title">我的购物清单</h1>
+  <ul class="shopping-list">
+    {{#each recipes}}
+      {{#each ingredients}}
+        <li>{{name}} - <span class="amount">{{amount}}</span></li>
+      {{/each}}
+    {{else}}
+      <li>请把<a href="/recipe-book">食谱</a>加入你的菜单</li>
+    {{/each}}
+  </ul>
 </template>

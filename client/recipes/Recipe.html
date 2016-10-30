@@ -1,18 +1,24 @@
 <template name="Recipe">
    <article class="recipe{{#if inMenu }} in-menu {{/if}}">
      <h3>{{name}}</h3>
-     <p>{{desc}}</p>
-     <p>
-       {{#each ingredients}}
-         <span class="ingredient">{{name}} - {{amount}}</span>
-       {{/each}}
-     </p>
-     <a href="/recipe/{{_id}}">Show Details</a>
+     {{#if editMode }}
+        {{> quickForm collection="Recipes" id=updateRecipeId type="update" doc = this autosave= true}}
+     {{else}}
+       <p>{{desc}}</p>
+       <p>
+         {{#each ingredients}}
+           <span class="ingredient">{{name}} - {{amount}}</span>
+         {{/each}}
+       </p>
+       <a href="/recipe/{{_id}}">详细...</a>
         {{#if inMenu}}
-          <button class="btn-deny toggle-menu">Remove From Menu</button>
+          <button class="btn-deny toggle-menu">移除菜单</button>
         {{else}}
-          <button class="btn-primary toggle-menu">Add To Menu</button>
+          <button class="btn-primary toggle-menu">加入菜单</button>
         {{/if}}
+     {{/if}}
+     <i class="fa fa-trash" title="删除"></i>
+     <i class="fa fa-pencil" title="编辑"></i>
    </article>
 </template>
 

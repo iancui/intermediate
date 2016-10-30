@@ -1,9 +1,9 @@
 <template name="Menu">
-  <h1 class="pasg-title">My Current Menu</h1>
+  <h1 class="pasg-title">我的菜单</h1>
   {{#each recipes}}
     {{> MenuItem}}
   {{else}}
-    <h3>Please add <a href="/recipe-book">recipes</a> tp your menu</h3>
+    <h3>请把<a href="/recipe-book">食谱</a>加入你的菜单</h3>
   {{/each}}
 </template>
 
