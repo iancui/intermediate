@@ -6,7 +6,10 @@ Recipes.allow({
   },
   update: function (userId, doc, fields, modifier) {
     return !!userId;
-  }
+  },
+  // updateMany: function (userId, doc, fields, modifier) {
+  //   return !!userId;
+  // },
   // update: function (userId, doc, fields, modifier) {
   //   //...
   // },
@@ -63,6 +66,14 @@ RecipeSchema = new SimpleSchema({
       type: "hidden",
     },
   },
+  isPublish: {
+    type: Boolean,
+    defaultValue: false,
+    optional: true,
+    autoform: {
+      type: "hidden",
+    },
+  },
   author: {
     type: String,
     label: "Author",
@@ -82,6 +93,16 @@ RecipeSchema = new SimpleSchema({
     autoform: {
       type: "hidden",
     },
+  },
+  updatedAt: {
+    type: Date,
+    label: "UpdatedAt",
+    autoValue: function() {
+      return new Date();
+    },
+    autoform: {
+      type: "hidden",
+    },
   }
 });
 
@@ -93,6 +114,11 @@ Meteor.methods({
   },
   deleteRecipe: function (id) {
     Recipes.remove(id);
+  },
+  publishRecipe: function(currentPublishState) {
+    Recipes.update({}, {$set: {
+      isPublish: !currentPublishState
+    }},{multi: true});
   },
 });
 

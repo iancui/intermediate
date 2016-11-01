@@ -1,5 +1,5 @@
 Meteor.publish('recipes', function () {
-  return Recipes.find({author: this.userId});
+  return Recipes.find({$or: [{author: this.userId} , {isPublish: true }] });
 });
 
 Meteor.publish('singleRecipe', function (id) {

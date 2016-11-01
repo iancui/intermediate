@@ -4,6 +4,11 @@
   {{else}}
     <button class="new-recipe">新的食谱</button>
   {{/if}}
+  {{#if isPublish}}
+    <button class="publish-recipe">撤销发布</button>
+  {{else}}
+    <button class="publish-recipe">发布</button>
+  {{/if}}
   <section class="recipes">
     {{#if Template.subscriptionsReady}}
       {{#each recipes}}
