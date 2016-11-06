@@ -103,6 +103,15 @@ RecipeSchema = new SimpleSchema({
     autoform: {
       type: "hidden",
     },
+  },
+  isDeleted: {
+    type: Boolean,
+    defaultValue: false,
+    optional: true,
+    autoform: {
+      type: "hidden",
+    },
+
   }
 });
 
