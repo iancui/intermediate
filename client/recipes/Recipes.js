@@ -3,6 +3,7 @@ Template.Recipes.onCreated(function(){
     this.isPublish = new ReactiveVar(false);
     self.autorun(function () {
       self.subscribe('recipes');
+      self.subscribe('menu');
     });
 });
 
@@ -18,9 +19,9 @@ Template.Recipes.events({
   'click .new-recipe': function () {
     Session.set('newRecipe', true);
   },
-  'click .publish-recipe': function (event, template) {
-    var currentPublishState = template.isPublish.get();
-    Meteor.call('publishRecipe', currentPublishState);
-    template.isPublish.set(!currentPublishState);
-  }
+  // 'click .publish-recipe': function (event, template) {
+  //   var currentPublishState = template.isPublish.get();
+  //   Meteor.call('publishRecipe', currentPublishState);
+  //   template.isPublish.set(!currentPublishState);
+  // }
 });

@@ -17,8 +17,11 @@
           <button class="btn-primary toggle-menu">加入菜单</button>
         {{/if}}
      {{/if}}
-     <i class="fa fa-trash" title="删除"></i>
-     <i class="fa fa-pencil" title="编辑"></i>
+     {{#if isAuthor}}
+       <i class="fa {{#if isPublish}}fa-low-vision{{else}}fa-share{{/if}}" title="{{#if isPublish}}私有{{else}}分享{{/if}}"></i>
+       <i class="fa fa-trash" title="删除"></i>
+       <i class="fa fa-pencil" title="编辑"></i>
+     {{/if}}
    </article>
 </template>
 

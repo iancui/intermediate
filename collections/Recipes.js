@@ -58,14 +58,14 @@ RecipeSchema = new SimpleSchema({
       },
     },
   },
-  inMenu: {
-    type: Boolean,
-    defaultValue: false,
-    optional: true,
-    autoform: {
-      type: "hidden",
-    },
-  },
+  // inMenu: {
+  //   type: Boolean,
+  //   defaultValue: false,
+  //   optional: true,
+  //   autoform: {
+  //     type: "hidden",
+  //   },
+  // },
   isPublish: {
     type: Boolean,
     defaultValue: false,
@@ -107,18 +107,19 @@ RecipeSchema = new SimpleSchema({
 });
 
 Meteor.methods({
-  toggleMenuItem: function (id, currentState) {
-    Recipes.update(id, {
-      $set: {inMenu: !currentState},
-    });
-  },
+  // toggleMenuItem: function (id, currentState) {
+  //   Recipes.update(id, {
+  //     $set: {inMenu: !currentState},
+  //   });
+  // },
   deleteRecipe: function (id) {
-    Recipes.remove(id);
+    Recipes.update({_id: id}, {$set: {isDeleted: true}});
+    // Recipes.remove(id);
   },
-  publishRecipe: function(currentPublishState) {
-    Recipes.update({}, {$set: {
+  publishRecipe: function(id,currentPublishState) {
+    Recipes.update({_id: id}, {$set: {
       isPublish: !currentPublishState
-    }},{multi: true});
+    }});
   },
 });
 
