@@ -13,7 +13,6 @@ Template.Menu.helpers({
       var recipeIds = menuCursor.map(function (m) {
         return m.recipeId;
       });
-      console.log(recipeIds);
       return Recipes.find({_id: {$in: recipeIds}});
     }
   }
