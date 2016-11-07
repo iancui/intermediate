@@ -39,5 +39,8 @@ Template.Recipe.helpers({
     menu = Menu.find({$and: [{recipeId: this._id},{author: Meteor.userId()}]}).fetch();;
     // 存在
     return menu.length!=0 && !menu[0].isDeleted;
+  },
+  isPublish: function() {
+    return this.isPublish == "true";
   }
 });

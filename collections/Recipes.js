@@ -67,8 +67,8 @@ RecipeSchema = new SimpleSchema({
   //   },
   // },
   isPublish: {
-    type: Boolean,
-    defaultValue: false,
+    type: String,
+    defaultValue: "false",
     optional: true,
     autoform: {
       type: "hidden",
@@ -105,8 +105,8 @@ RecipeSchema = new SimpleSchema({
     },
   },
   isDeleted: {
-    type: Boolean,
-    defaultValue: false,
+    type: String,
+    defaultValue: "false",
     optional: true,
     autoform: {
       type: "hidden",
@@ -122,12 +122,17 @@ Meteor.methods({
   //   });
   // },
   deleteRecipe: function (id) {
-    Recipes.update({_id: id}, {$set: {isDeleted: true}});
+    Recipes.update({_id: id}, {$set: {isDeleted: "true"}});
     // Recipes.remove(id);
   },
   publishRecipe: function(id,currentPublishState) {
+    if (currentPublishState=="false") {
+      currentPublishState = "true"
+    }else{
+      currentPublishState = "false"
+    }
     Recipes.update({_id: id}, {$set: {
-      isPublish: !currentPublishState
+      isPublish: currentPublishState
     }});
   },
 });

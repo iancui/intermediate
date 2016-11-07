@@ -1,7 +1,8 @@
 Meteor.publish('recipes', function () {
-  return Recipes.find({$and: [{isDeleted: false },
-   {$or: [{author: this.userId} , {isPublish: true }]}
+  return Recipes.find({$and: [{isDeleted: "false" },
+   {$or: [{author: this.userId} , {isPublish: "true" }]}
  ]});
+   // return Recipes.find({$or: [{author: this.userId} , {isPublish: "true" }]});
 });
 
 Meteor.publish('singleRecipe', function (id) {
